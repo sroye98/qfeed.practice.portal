@@ -5,6 +5,8 @@ import Login from './views/Login';
 import Patients from './views/Patients';
 import Queues from './views/Queues';
 import Recordings from './views/Recordings';
+import NotFound from './views/404';
+
 
 const Routes = (props) => {
     return (
@@ -15,6 +17,7 @@ const Routes = (props) => {
                 <Route exact path="/patients" component={Patients} />
                 <Route exact path="/queues" component={Queues} />
                 <Route exact path="/recordings" component={Recordings} />
+                <Route path="*" component={NotFound} />
             </Switch>
         </div>
     );

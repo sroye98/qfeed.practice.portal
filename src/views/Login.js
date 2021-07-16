@@ -2,9 +2,11 @@ import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 
 const Login = (props) => {
+    const history = useHistory();
+
     const handleLogin = () => {
-        useHistory("/dashboard");
-    }
+        history("/dashboard");
+    };
 
     return (
         <Form name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} initialValues={{ remember: true }} onFinish={handleLogin}>
