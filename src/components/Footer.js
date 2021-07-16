@@ -4,6 +4,6 @@ const FooterLayout = (props) => {
             <p>&copy; 2021 All Rights Reserved.</p>
         </>
     );
-}
+};
 
 export default FooterLayout;

@@ -9,20 +9,20 @@ const { Header, Footer, Content } = Layout;
 
 const Application = (props) => {
     return (
-        <Layout>
-            <Header>
-                <HeaderLayout />
-            </Header>
-            <Content style={{ margin: '20px' }}>
-                <Router>
+        <Router>
+            <Layout>
+                <Header>
+                    <HeaderLayout />
+                </Header>
+                <Content style={{ margin: '20px' }}>
                     <Routes />
-                </Router>
-            </Content>
-            <Footer>
-                <FooterLayout />
-            </Footer>
-        </Layout>
+                </Content>
+                <Footer style={{ textAlign: 'center' }}>
+                    <FooterLayout />
+                </Footer>
+            </Layout>
+        </Router>
     );
-}
+};
 
 export default Application;
