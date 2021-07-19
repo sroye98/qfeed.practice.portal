@@ -6,6 +6,7 @@ import Patients from './views/Patients';
 import Queues from './views/Queues';
 import Recordings from './views/Recordings';
 import NotFound from './views/404';
+import AuditLog from './views/Audits';
 
 
 const Routes = (props) => {
@@ -13,6 +14,7 @@ const Routes = (props) => {
         <div className="site-layout-content">
             <Switch>
                 <Route exact path="/" component={Login} />
+                <Route exact path="/audit-logs" component={AuditLog} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/patients" component={Patients} />
                 <Route exact path="/queues" component={Queues} />
