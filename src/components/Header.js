@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Menu } from 'antd';
 import { AppstoreOutlined, AuditOutlined, HomeTwoTone, UsergroupAddOutlined, VideoCameraTwoTone } from '@ant-design/icons';
 
@@ -14,9 +14,11 @@ const HeaderLayout = (props) => {
 
     return (
         <>
-            <div className="logo" />
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={1} selectedKeys={[currentKey]} onClick={handleClick}>
-                <Menu.Item key="" icon={<HomeTwoTone />}>Home</Menu.Item>
+            <Link to="/">
+                <div className="logo" />
+            </Link>
+            <Menu theme="dark" mode="horizontal" selectedKeys={[currentKey]} onClick={handleClick}>
+                <Menu.Item key="dashboard" icon={<HomeTwoTone />}>Home</Menu.Item>
                 <Menu.Item key="patients" icon={<UsergroupAddOutlined />}>Patients</Menu.Item>
                 <Menu.Item key="queues" icon={<AppstoreOutlined />}>Queues</Menu.Item>
                 <Menu.Item key="recordings" icon={<VideoCameraTwoTone />}>Recordings</Menu.Item>

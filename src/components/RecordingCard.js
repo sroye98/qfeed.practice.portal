@@ -1,5 +1,5 @@
 import { Card, Tooltip } from 'antd';
-import { DownloadOutlined, FacebookOutlined, InstagramOutlined, TwitterOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
+import { DownloadOutlined, FacebookOutlined, InstagramOutlined, LinkedinOutlined, TwitterOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -21,6 +21,9 @@ const RecordingCard = (props) => {
                 </Tooltip>,
                 <Tooltip title="Download Twitter Video">
                     <TwitterOutlined key="twitter" />
+                </Tooltip>,
+                <Tooltip title="Download LinkedIn Video">
+                    <LinkedinOutlined key="linkedin" />
                 </Tooltip>,
                 <Tooltip title="Upload Edited Video">
                     <UploadOutlined key="upload" />

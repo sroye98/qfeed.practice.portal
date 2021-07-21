@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, DatePicker, Form, Input, Modal, PageHeader, Radio, Select, Space, Table } from 'antd';
-import { CheckCircleOutlined, CloseOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, DatePicker, Dropdown, Form, Input, Menu, Modal, PageHeader, Radio, Select, Space, Table } from 'antd';
+import { CheckCircleOutlined, CloseOutlined, DownOutlined, MailOutlined } from '@ant-design/icons';
+import moment from 'moment';
 
 import { patients, queues } from '../constants/StaticData';
 
@@ -15,6 +16,13 @@ const FormPatientValues = {
     email: 'jdoe@example.com',
     phone: '123-123-1234',
 };
+
+const filterMenu = (
+    <Menu>
+        <Menu.Item>Response Received</Menu.Item>
+        <Menu.Item>Response Not Received</Menu.Item>
+    </Menu>
+);
 
 const Patients = (props) => {
     const [isPatientModalVisible, setIsPatientModalVisible] = useState(false);
@@ -41,19 +49,24 @@ const Patients = (props) => {
             <PageHeader
                 title="Current Patients"
                 extra={[
+                    <Dropdown overlay={filterMenu}>
+                        <Button>
+                            Filter <DownOutlined />
+                        </Button>
+                    </Dropdown>,
                     <Button key="1" type="primary" onClick={showPatientModal}>
                         Add New Patient
                     </Button>,
                 ]} />
             <Table dataSource={data}>
-                <Column title="Name" key="fullName" render={(record) => (
+                <Column title="Name" key="fullName" sorter={{ compare: (a, b) => a.fullName.localeCompare(b.fullName) }} render={(record) => (
                     <Button type="link" onClick={showPatientModal}>{record.fullName}</Button>
                 )} />
-                <Column title="Visited On" dataIndex="visited" key="visited" />
-                <Column title="Email" dataIndex="email" key="email" />
+                <Column title="Visited On" dataIndex="visited" key="visited" sorter={{ compare: (a, b) => moment(a.visited).unix() - moment(b.visited).unix() }} />
+                <Column title="Email" dataIndex="email" key="email" sorter={{ compare: (a, b) => a.email.localeCompare(b.email) }} />
                 <Column title="Phone" dataIndex="phone" key="phone" />
-                <Column title="Invitations Sent" dataIndex="invitationSent" key="invitationSent" />
-                <Column title="Response Received" key="responseReceived" render={(record) => record.responseReceived ? (<CheckCircleOutlined />) : (<CloseOutlined />)} />
+                <Column title="Invitations Sent" dataIndex="invitationSent" key="invitationSent" sorter={{ compare: (a, b) => a.invitationSent - b.invitationSent }} />
+                <Column title="Response Received" key="responseReceived" sorter={{ compare: (a, b) => a.responseReceived - b.responseReceived }} render={(record) => record.responseReceived ? (<CheckCircleOutlined />) : (<CloseOutlined />)} />
                 <Column title="Action" key="action" render={() => (
                     <Space size="middle">
                         <Button type="primary" icon={<MailOutlined />} onClick={showInviteModal}>Invite</Button>
